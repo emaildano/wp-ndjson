@@ -133,7 +133,7 @@ function create_index() {
  */
 
 add_action('save_post', 'update_index');
-function update_index($post_id) {
+function update_index($id) {
 
     // Check autosave
      if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) return;
