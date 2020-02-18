@@ -1,74 +1,28 @@
-# WP Serverless Search
-A static search plugin for WordPress. Search through thousands of posts in milliseconds, with support for fuzzy matching and support for custom themes.
+# WP-NDJSON
+A simple plugin to export/create a NDJSON file from your WordPress content.
 
-[View Demo](https://agitated-brahmagupta5490.on.getshifter.io/) on [Shifter](https://www.getshifter.io)
+## Usage
 
-## Installation
+### Installation
 
-1. Download WP Serverless Search WordPress Plugin as a Zip Archive
-2. Upload to your WordPress site or blog
-3. Activate
+After install, WP-NDJSON will create a `/wp-ndjson` in the uploads directory.
 
-## Customizing to your Theme
+### Creating an index
 
-The default settings for this WordPress Plugin are designed to work with the official Twenty Seventeen WordPress Theme. However, you can customize these options for custom Themes for site search forms.
+No index is created after installation. This is to avoid unncessary index builds while installing on sites with large datasets.
 
-1. Navigate to the WP Serverless Search WordPress Plugin Settings
-2. Update Form Class to best match your theme search form.
-3. Update Input Class to best match the input of the search form.
+To create the NDJSON index file, navigate to `Settings / WP-NDJSON` in the WordPress dashboard.
 
-### Finding Your Form and Input Class
+### Updating an index
 
-The best way to do this is using your browser developer tools such as Inspect Element in Chrome, Developer Tools in Safari, etc.
+On post save or post edit, WP-NDJSON will query the existing index file and update the post content.
 
-For example, here is the site search form HTML from the twenty seventeen WordPress Theme.
+## What is NDJSON
 
-In this example, our target Form Class could be `form[role=search]`, `form.search-form`, or simply `.search-form`. You decide how specific you want to get, based on your Theme and needs.
+NDJSON is Newline delimited JSON. It's a convenient format for storing or streaming large amounts of JSON data. For more info on NDJSON refer to [ndjson.org](http://ndjson.org/).
 
-For the Input Class, that could be any of the following: `input[type=search]`, `#search-form`, `input.search-field`, etc.
+## Why was this plugin created?
 
-Those values may change depending on your theme.
+This plugin was a byproduct of another build. While creating a plugin to export WordPress posts as JSON data, I unintentionally wrote a function that exported the data as NDJSON.
 
-```html
-<form role="search" method="get" class="search-form" action="https://example.com/">
-	<label for="search-form">
-		<span class="screen-reader-text">Search for:</span>
-	</label>
-	<input
-    type="search" id="search-form" class="search-field" placeholder="Search …" value="" name="s">
-	<button type="submit" class="search-submit">
-    <span class="screen-reader-text">Search</span>
-  </button>
-</form>
-```
-
-## FAQs
-
-> Q: Is WP Serverless Search a WordPress site search plugin?
-> A: Yes!
-
-> Q: Why did you build this?
-> A: Few reasons:
-> 1. Native WordPress Search is slow and inaccurate.
-> 2. We needed a site search solution for static WordPress sites using [Shifter](https://www.getshifter.io), so we built one.
-
-> Q: Do I need to add a custom template, custom HTML, etc. to make it work?
-> A: Nope.
-
-> Q: Is it free to use?
-> A: Yah, go have fun.
-
-> Q: Is it fast?
-> Yes, very fast.
-
-> Q: Why so fast?
-> A: It uses simple JavaScript to search a static XML. No database queries or server resources are necessary while searching.
-
-> Q: My site is huge, is that an issue?
-> A: Should be okay. We've tested WP Serverless Search up to ~1K posts and was able to return search results within milliseconds.
-
-> Q: Does it support Fuzzy search? e.g. Hallo, Halo, Hello, Helloooo
-> A: Yes! It uses Fusejs to provide fuzzy search results for typos.
-
-> Q: Does it support Auto Complete?
-> A: Yes, it will search and sort as you type.
+I find the NDJSON format interesting and belive it has a lot of potetional but I don't have a specific use case for it yet. For now, I'll release this as it is in case anyone finds it helpful.
